@@ -8,7 +8,7 @@ var request     = require('request');
 app.get('/', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 
-    data.getAlldata(function (result) {
+    data.getAllData(function (result) {
         res.send(result);
     });
 });
@@ -16,8 +16,8 @@ app.get('/', function (req, res) {
 app.get('/artist/:id', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 
-    var artistId = req.params.artistId;
-
+    var artistId = req.params.id;
+    console.log(artistId);
     data.getArtistData(artistId, function (result) {
         res.send(result);
     });

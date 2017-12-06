@@ -1,5 +1,5 @@
-var db = require('../../config/dbconfig.js');
-
+var sqlite3     = require('sqlite3').verbose();
+var db          = new sqlite3.Database('./Lab_Database/data/database.db');
 
 
 module.exports = {
@@ -7,9 +7,9 @@ module.exports = {
   // Get all the data to show on the home page.
   getAllData: function (callback) {
 
-      var query = 'SELECT * FROM artwork';
+      var query = 'SELECT * FROM artwork LIMIT 100';
 
-      db.query(query, function (err,result){
+      db.all(query, function (err,result){
           if(err) throw err;
           callback(result);
       });
@@ -18,9 +18,9 @@ module.exports = {
   // Get a single artist's data.
   getArtistData: function (artistId, callback) {
 
-      var query = 'SELECT * FROM artwork WHERE artistId = ' + artistId;
+      var query = 'SELECT * FROM artists WHERE id = ' + artistId + ';';
 
-      db.query(query, function (err,result){
+      db.all(query, function (err,result){
           if(err) throw err;
           callback(result);
       });
