@@ -51,6 +51,26 @@ app.get('/filterArtist/:id', function (req, res) {
     });
 });
 
+app.get('/filterPrice/low', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var artistId = req.params.id;
+
+    data.filterByPriceLow(function (result) {
+        res.send(result);
+    });
+});
+
+app.get('/filterPrice/high', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var artistId = req.params.id;
+
+    data.filterByPriceHigh(function (result) {
+        res.send(result);
+    });
+});
+
 
 app.listen(3000, function () {
   console.log('Tate Gallery server is running on port 3000!');

@@ -43,6 +43,26 @@ module.exports = {
           if(err) throw err;
           callback(result);
       });
+  },
+
+  filterByPriceLow: function (callback) {
+
+      var query = 'SELECT * FROM artwork ORDER BY price ASC LIMIT 100;';
+
+      db.all(query, function (err,result){
+          if(err) throw err;
+          callback(result);
+      });
+  },
+
+  filterByPriceHigh: function (callback) {
+
+      var query = 'SELECT * FROM artwork ORDER BY price DESC LIMIT 100;';
+
+      db.all(query, function (err,result){
+          if(err) throw err;
+          callback(result);
+      });
   }
 
 };
