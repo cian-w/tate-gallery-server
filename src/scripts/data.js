@@ -15,10 +15,20 @@ module.exports = {
       });
   },
 
+  getArtistsNames: function (callback) {
+
+      var query = 'SELECT name, id FROM artists;';
+
+      db.all(query, function (err,result){
+          if(err) throw err;
+          callback(result);
+      });
+  },
+
   // Get a single artist's data.
   getArtistData: function (artistId, callback) {
 
-      var query = 'SELECT * FROM artists WHERE id = ' + artistId + ';';
+      var query = 'SELECT * FROM artwork WHERE artistId = ' + artistId + ';';
 
       db.all(query, function (err,result){
           if(err) throw err;

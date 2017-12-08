@@ -13,11 +13,19 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/artists', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    data.getArtistsNames(function (result) {
+        res.send(result);
+    });
+});
+
 app.get('/artist/:id', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 
     var artistId = req.params.id;
-    console.log(artistId);
+
     data.getArtistData(artistId, function (result) {
         res.send(result);
     });
@@ -29,6 +37,16 @@ app.get('/search/:searchTerm', function (req, res) {
     var searchTerm = req.params.searchTerm;
 
     data.searchData(searchTerm, function (result) {
+        res.send(result);
+    });
+});
+
+app.get('/filterArtist/:id', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var artistId = req.params.id;
+
+    data.getArtistData(artistId, function (result) {
         res.send(result);
     });
 });
