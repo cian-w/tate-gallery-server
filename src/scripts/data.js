@@ -7,7 +7,7 @@ module.exports = {
   // Get all the data to show on the home page.
   getAllData: function (callback) {
 
-      var query = 'SELECT * FROM artwork LIMIT 100';
+      var query = 'SELECT * FROM artwork WHERE id > 1000 LIMIT 100';
 
       db.all(query, function (err,result){
           if(err) throw err;
@@ -19,6 +19,16 @@ module.exports = {
   getArtistData: function (artistId, callback) {
 
       var query = 'SELECT * FROM artists WHERE id = ' + artistId + ';';
+
+      db.all(query, function (err,result){
+          if(err) throw err;
+          callback(result);
+      });
+  },
+
+  searchData: function (searchTerm, callback) {
+      console.log('here');
+      var query = 'SELECT * FROM artwork WHERE title OR artist Like "' + searchTerm + '" LIMIT 100;';
 
       db.all(query, function (err,result){
           if(err) throw err;

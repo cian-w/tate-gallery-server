@@ -23,6 +23,16 @@ app.get('/artist/:id', function (req, res) {
     });
 });
 
+app.get('/search/:searchTerm', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var searchTerm = req.params.searchTerm;
+
+    data.searchData(searchTerm, function (result) {
+        res.send(result);
+    });
+});
+
 
 app.listen(3000, function () {
   console.log('Tate Gallery server is running on port 3000!');
