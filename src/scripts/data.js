@@ -27,8 +27,7 @@ module.exports = {
   },
 
   searchData: function (searchTerm, callback) {
-      console.log('here');
-      var query = 'SELECT * FROM artwork WHERE title OR artist Like "' + searchTerm + '" LIMIT 100;';
+      var query = 'SELECT * FROM artwork WHERE title LIKE "' + searchTerm + '%" LIMIT 100;';
 
       db.all(query, function (err,result){
           if(err) throw err;
