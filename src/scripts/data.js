@@ -67,14 +67,14 @@ module.exports = {
 
   // Upload new artwork to DB
   uploadArtwork: function (artwork){
-      // artwork = JSON.parse(Object.keys(artwork)[0]);
-      console.log(artwork);
+      artwork = JSON.parse(Object.keys(artwork)[0]);
 
       var title = artwork.title;
       var artist = artwork.artist;
       var url = artwork.url;
+      var id = Math.random();
 
-      var query = "INSERT INTO artwork(id,accession_number,artist,artistRole,artistId,title,dateText,medium,creditLine,year,acquisitionYear,dimensions,width,height,depth,units,inscription,thumbnailCopyright,thumbnailUrl,url) VALUES ('1035342','A0240001','" + artist + "','artist','385453','" + title + "','date','empty','2017',NULL,'2017','support: 394 x 419 mm','394','419',NULL,'mm',NULL,NULL,'thumbnailUrl','" + url + "');";
+      var query = "INSERT INTO artwork(id,accession_number,artist,artistRole,artistId,title,dateText,medium,creditLine,year,acquisitionYear,dimensions,width,height,depth,units,inscription,thumbnailCopyright,thumbnailUrl,url) VALUES ('" + id + "','A0240001','" + artist + "','artist','385453','" + title + "','date','empty','2017',NULL,'2017','support: 394 x 419 mm','394','419',NULL,'mm',NULL,NULL,'" + url + "','" + url + "');";
 
       db.run(query, function(err){
           if(err) {
