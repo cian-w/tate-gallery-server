@@ -84,6 +84,13 @@ app.get('/orders', function (req, res) {
     });
 });
 
+app.post('/checkout', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var price = req.body;
+    data.insertOrder(price);
+});
+
 app.post('/upload', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 

@@ -83,6 +83,19 @@ module.exports = {
       });
   },
 
+  // Upload new artwork to DB
+  insertOrder: function (price){
+      var date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+      price = JSON.parse(Object.keys(price)[0]);
+      var query = "INSERT INTO orders(price,date) VALUES ('"+price+"','"+date+"' );";
+
+      db.run(query, function(err){
+          if(err) {
+              console.log(err);
+          }
+      });
+  },
+
   // Get orders to show on account page
   getOrders: function (callback) {
       var query = 'SELECT * FROM orders;';
