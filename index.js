@@ -3,7 +3,12 @@ var app         = express();
 var data        = require('./src/scripts/data');
 var http        = require('http');
 var request     = require('request');
+var bodyParser  = require('body-parser');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -75,10 +80,7 @@ app.post('/upload', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 
     var artwork = req.body;
-    console.log(artwork);
-    data.uploadArtwork(function (result) {
-        res.send(result);
-    });
+    data.uploadArtwork(artwork);
 });
 
 
