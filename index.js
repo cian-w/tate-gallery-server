@@ -71,6 +71,16 @@ app.get('/filterPrice/high', function (req, res) {
     });
 });
 
+app.post('/upload', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var artwork = req.body;
+    console.log(artwork);
+    data.uploadArtwork(function (result) {
+        res.send(result);
+    });
+});
+
 
 app.listen(8081, function () {
   console.log('Tate Gallery server is running on port 3000!');
