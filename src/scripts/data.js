@@ -81,6 +81,16 @@ module.exports = {
               console.log(err);
           }
       });
-  }
+  },
+
+  // Get orders to show on account page
+  getOrders: function (callback) {
+      var query = 'SELECT * FROM orders;';
+
+      db.all(query, function (err,result){
+          if(err) throw err;
+          callback(result);
+      });
+  },
 
 };

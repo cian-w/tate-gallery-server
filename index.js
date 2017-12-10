@@ -76,6 +76,14 @@ app.get('/filterPrice/high', function (req, res) {
     });
 });
 
+app.get('/orders', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    data.getOrders(function (result) {
+        res.send(result);
+    });
+});
+
 app.post('/upload', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
 
